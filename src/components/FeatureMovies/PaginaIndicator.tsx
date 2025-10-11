@@ -1,43 +1,14 @@
-// import { useEffect, useRef } from "react";
-
-type MovieType = {
-  id: number;
-  backdrop_path: string;
-  title: string;
-  release_date: string;
-  overview: string;
-};
-
-interface PaginaIndicatorProps {
+type PaginaIndicatorProps = {
   movies: MovieType[];
   activeMovieId: number;
   setActiveMovieId: (id: number) => void;
-}
+};
 
 const PaginaIndicator = ({
   movies,
   activeMovieId,
   setActiveMovieId,
 }: PaginaIndicatorProps) => {
-//   const idxRef = useRef(0);
-
-//   useEffect(() => {
-//     if (!movies.length) return;
-//     const i = movies.findIndex((m) => m.id === activeMovieId);
-//     idxRef.current = i === -1 ? 0 : i;
-//   }, [movies, activeMovieId]);
-
-//   useEffect(() => {
-//     if (!movies.length) return;
-
-//     const interval = setInterval(() => {
-//       idxRef.current = (idxRef.current + 1) % movies.length;
-//       setActiveMovieId(movies[idxRef.current].id);
-//     }, 3000);
-
-//     return () => clearInterval(interval);
-//   }, [movies, movies.length, setActiveMovieId]);
-
   return (
     <div className="absolute right-8 bottom-[10%]">
       <ul className="flex gap-1">

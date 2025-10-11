@@ -1,14 +1,18 @@
-import CircularProcessBar from "./CircularProcessBar";
+import { Link } from "react-router-dom";
+import CircularProcessBar from "@/components/CircularProcessBar";
+import Image from "@/components/Image";
 
-interface MovieCardProps {
+type MovieCardProps = {
+  id: string;
   title: string;
   releaseDate: string;
   posterPath: string;
   point: number;
   mediaType: string;
-}
+};
 
 const MovieCard = ({
+  id,
   title,
   releaseDate,
   posterPath,
@@ -16,25 +20,32 @@ const MovieCard = ({
   mediaType,
 }: MovieCardProps) => {
   return (
-    <div className="relative cursor-pointer rounded-lg border border-slate-800 transition-all duration-300 hover:scale-104 hover:shadow-lg hover:shadow-white/10">
-      {mediaType === "tv" && (
-        <div className="absolute top-1 right-1 rounded bg-black p-1 text-sm font-bold text-white shadow-md">
-          TV Show
-        </div>
-      )}
-      <img
-        className="rounded-lg"
-        src={`https://image.tmdb.org/t/p/w500${posterPath}`}
-      />
-      <div className="relative -top-[1.5vw] px-4">
-        <CircularProcessBar
-          percent={Math.round(point * 10)}
-          strokeColor={point >= 7 ? "green" : point >= 5 ? "orange" : "red"}
+    <Link
+      to={mediaType === "tv" ? `/tv/${id}` : `/movie/${id}`}
+      className="cursor-pointer rounded-lg border border-slate-800 transition-all duration-300 hover:scale-104 hover:shadow-lg hover:shadow-white/10"
+    >
+      <div className="relative">
+        {mediaType === "tv" && (
+          <div className="absolute top-1 right-1 rounded bg-black p-1 text-sm font-bold text-white shadow-md">
+            TV Show
+          </div>
+        )}
+        <Image
+          src={`https://image.tmdb.org/t/p/w500${posterPath}`}
+          width={210}
+          height={300}
+          className="w-full rounded-lg"
         />
-        <p className="mt-2 font-bold">{title}</p>
-        <p className="text-slate-300">{releaseDate}</p>
+        <div className="relative -top-[1.5vw] px-4">
+          <CircularProcessBar
+            percent={Math.round(point * 10)}
+            strokeColor={point >= 7 ? "green" : point >= 5 ? "orange" : "red"}
+          />
+          <p className="mt-2 font-bold">{title}</p>
+          <p className="text-slate-300">{releaseDate}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 export default MovieCard;

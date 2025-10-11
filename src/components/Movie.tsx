@@ -1,7 +1,8 @@
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "@/components/Image"
 
-export interface MovieProps {
+export type MovieProps = {
   data: {
     backdrop_path: string;
     title: string;
@@ -15,10 +16,11 @@ const Movie = (props: MovieProps) => {
 
   return (
     <div>
-      <img
+      <Image
         src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
-        alt={data.title || "banner"}
         className="aspect-video brightness-50 w-full"
+        width={1430}
+        height={800}
       />
       <div className="sx:w-1/3 absolute bottom-[10%] left-8 w-1/2">
         <p className="mb-2 font-bold sm:text-[2vw]">

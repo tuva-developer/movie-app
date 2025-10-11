@@ -6,21 +6,21 @@ import RelatedMediaList from "@/components/MediaDetail/RelatedMediaList";
 import MovieInfomation from "@/components/MediaDetail/MovieInfomation";
 import { useFetch } from "@/hooks/useFetch";
 
-const MovieDetail = () => {
+const TVShowDetail = () => {
   const { id } = useParams();
 
-  const { data: movieResponse, isLoading: isLoading } =
-    useFetch<MovieDetailType>({
-      url: `/movie/${id}?append_to_response=release_dates,credits`,
+  const { data: tvShowResponse, isLoading: isLoading } =
+    useFetch<TVShowDetailType>({
+      url: `/tv/${id}?append_to_response=release_dates,credits`,
     });
 
-  const movieInfo: MovieDetailType | undefined = movieResponse
-    ? { ...movieResponse, media_type: "movie" }
+  const tvShowInfo: TVShowDetailType | undefined = tvShowResponse
+    ? { ...tvShowResponse, media_type: "tv" }
     : undefined;
 
   const { data: relatedMoviesRespone, isLoading: isRelatedLoading } =
     useFetch<RecommendationsResponse>({
-      url: `/movie/${id}/recommendations`,
+      url: `/tv/${id}/recommendations`,
     });
 
   const relatedMovies = relatedMoviesRespone?.results ?? [];
@@ -29,22 +29,22 @@ const MovieDetail = () => {
 
   return (
     <div>
-      <Banner mediaInfo={movieInfo} />
+      <Banner mediaInfo={tvShowInfo} />
       <div className="bg-black text-[1.2vw] text-white">
         <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
           <div className="flex-3">
-            <ActorList actors={movieInfo?.credits.cast || []} />
+            <ActorList actors={tvShowInfo?.credits.cast || []} />
             <RelatedMediaList
               mediaList={relatedMovies}
               isLoading={isRelatedLoading}
             />
           </div>
           <div className="flex-1">
-            <MovieInfomation movieInfo={movieInfo} />
+            <MovieInfomation movieInfo={tvShowInfo} />
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default MovieDetail;
+export default TVShowDetail;

@@ -1,4 +1,9 @@
-const CircularProcessBar = ({ percent = 0, size = 3, strokeWidth = 0.25, strokeColor = "green" }) => {
+const CircularProcessBar = ({
+  percent = 0,
+  size = 3,
+  strokeWidth = 0.25,
+  strokeColor = "green",
+}) => {
   const radius = size / 2 - strokeWidth;
 
   return (
@@ -9,7 +14,7 @@ const CircularProcessBar = ({ percent = 0, size = 3, strokeWidth = 0.25, strokeC
           cx={`${size / 2}vw`}
           cy={`${size / 2}vw`}
           stroke="white"
-          strokeWidth={`${strokeWidth}vw`}
+          strokeWidth={`${strokeWidth - 0.1}vw`}
         ></circle>
         <circle
           r={`${radius}vw`}

@@ -1,10 +1,13 @@
+export const API_KEY = import.meta.env.VITE_API_KEY;
+export const API_HOST = import.meta.env.VITE_API_HOST;
+
 export const TrendingTabs = [
-  { id: "all", label: "All", url: "https://api.themoviedb.org/3/trending/all/day" },
-  { id: "movie", label: "Movie", url: "https://api.themoviedb.org/3/trending/movie/day" },
-  { id: "tv", label: "TV Show", url: "https://api.themoviedb.org/3/trending/tv/day" },
+  { id: "all", label: "All", url: "/trending/all/day" },
+  { id: "movie", label: "Movie", url: "/trending/movie/day" },
+  { id: "tv", label: "TV Show", url: "/trending/tv/day" },
 ];
 
 export const TopRatedTabs = [
-  { id: "movie", label: "Movie", url: "https://api.themoviedb.org/3/movie/top_rated" },
-  { id: "tv", label: "TV Show", url: "https://api.themoviedb.org/3/tv/top_rated" },
+  { id: "movie", label: "Movie", url: "/movie/top_rated" },
+  { id: "tv", label: "TV Show", url: "/tv/top_rated" },
 ];
