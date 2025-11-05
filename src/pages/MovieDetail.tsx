@@ -3,7 +3,7 @@ import Loading from "@/components/Loading";
 import Banner from "@/components/MediaDetail/Banner";
 import ActorList from "@/components/MediaDetail/ActorList";
 import RelatedMediaList from "@/components/MediaDetail/RelatedMediaList";
-import MovieInfomation from "@/components/MediaDetail/MovieInfomation";
+import MediaInfomation from "@/components/MediaDetail/MediaInfomation";
 import { useFetch } from "@/hooks/useFetch";
 
 const MovieDetail = () => {
@@ -40,7 +40,7 @@ const MovieDetail = () => {
             />
           </div>
           <div className="flex-1">
-            <MovieInfomation movieInfo={movieInfo} />
+            <MediaInfomation mediaInfo={movieInfo} />
           </div>
         </div>
       </div>
