@@ -5,31 +5,40 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import Image from "@/components/Image";
 
 type BannerProps = {
-  mediaInfo: MediaDetailType | undefined;
+  title?: string;
+  backdropPath?: string;
+  posterPath?: string;
+  certification?: string;
+  crews?: CrewType[];
+  genres?: GenresType[];
+  releaseDate?: string;
+  point?: number;
+  overView?: string;
 };
 
-const Banner = ({ mediaInfo }: BannerProps) => {
-  const certification =
-    mediaInfo?.release_dates?.results
-      ?.find((result) => result.iso_3166_1 === "US")
-      ?.release_dates?.find((r: { certification: string }) => r.certification)
-      ?.certification ?? "G";
-
-  const findCrews = (mediaInfo?.credits.crew || [])
-    .filter((crew) => ["Director", "Screenplay", "Writer"].includes(crew.job))
-    .map((crew) => ({
-      id: crew.id,
-      job: crew.job,
-      name: crew.name,
-    }));
-
-  const groupedCrews = groupBy(findCrews, "job");
+const Banner = ({
+  title = "",
+  backdropPath = "",
+  posterPath = "",
+  certification = "",
+  crews = [],
+  genres = [],
+  releaseDate = "",
+  point = 0,
+  overView = "",
+}: BannerProps) => {
+  const groupedCrews = groupBy(
+    crews.filter((crew) =>
+      ["Director", "Screenplay", "Writer"].includes(crew.job),
+    ),
+    "job",
+  );
 
   return (
     <div className="relative overflow-hidden text-white shadow-sm shadow-slate-800">
       <Image
-        className="absolute inset-0 w-full brightness-[.2]"
-        src={`https://image.tmdb.org/t/p/original${mediaInfo?.backdrop_path}`}
+        className="absolute inset-0 w-full brightness-[.2] aspect-video w-full"
+        src={`https://image.tmdb.org/t/p/original${backdropPath}`}
         width={1905}
         height={680}
       ></Image>
@@ -38,26 +47,22 @@ const Banner = ({ mediaInfo }: BannerProps) => {
           <Image
             width={600}
             height={900}
-            src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${mediaInfo?.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${posterPath}`}
           ></Image>
         </div>
         <div className="flex-2">
-          <p className="mb-2 text-[2vw] font-bold">
-            {mediaInfo?.media_type === "movie"
-              ? mediaInfo?.title
-              : mediaInfo?.name}
-          </p>
+          <p className="mb-2 text-[2vw] font-bold">{title}</p>
           <div className="flex items-center gap-4 text-[1.2vw]">
             <span className="border border-gray-400 p-1 text-gray-400">
               {certification}
             </span>
-            <p>{mediaInfo?.release_date}</p>
-            <p>{mediaInfo?.genres.map((g) => g.name).join(", ")}</p>
+            <p>{releaseDate}</p>
+            <p>{genres.map((g) => g.name).join(", ")}</p>
           </div>
           <div className="mt-4 flex items-center gap-4">
             <div className="flex items-center gap-2">
               <CircularProcessBar
-                percent={Math.round(mediaInfo?.vote_average ?? 0) * 10}
+                percent={Math.round(point * 10)}
                 size={3.5}
                 strokeWidth={0.3}
               />
@@ -70,7 +75,7 @@ const Banner = ({ mediaInfo }: BannerProps) => {
           </div>
           <div className="mt-4">
             <p className="mb-2 text-[1.3vw] font-bold">Overview</p>
-            <p>{mediaInfo?.overview}</p>
+            <p>{overView}</p>
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2">
             {Object.keys(groupedCrews).map((job) => (

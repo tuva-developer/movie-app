@@ -22,11 +22,13 @@ const RelatedMediaList = ({
               key={media.id}
               id={media.id}
               title={
-                media?.media_type === "movie"
-                  ? media.title
-                  : media?.name
+                media?.media_type === "tv"
+                  ? media?.name
+                  : media?.title
               }
-              releaseDate={media.release_date}
+              releaseDate={media?.media_type === "tv"
+                  ? media?.first_air_date
+                  : media?.release_date}
               posterPath={media.poster_path}
               point={media.vote_average}
               mediaType={"movie"}

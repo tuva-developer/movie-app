@@ -1,22 +1,22 @@
 import { useState } from "react";
 import ActorInfo from "@/components/MediaDetail/ActorInfo";
 
+type Actor = {
+  id: string;
+  name: string;
+  character: string;
+  profile_path: string;
+  episodeCount?: number;
+};
+
 type ActorListProps = {
-  actors:
-    | [
-        {
-          id: string;
-          name: string;
-          character: string;
-          profile_path: string;
-        },
-      ]
-    | [];
-}
+  actors: Actor[];
+};
+
 const ActorList = ({ actors }: ActorListProps) => {
   const [isShowMore, setIsShowMore] = useState(false);
 
-  const currentActors = !isShowMore ? actors.slice(0, 4) : actors.slice(0, 32);
+  const currentActors = !isShowMore ? actors?.slice(0, 4) || [] : actors?.slice(0, 32) || [];
 
   return (
     <div>
@@ -29,6 +29,7 @@ const ActorList = ({ actors }: ActorListProps) => {
               name={actor.name}
               character={actor.character}
               profile_path={actor.profile_path}
+              espisodeCount={actor?.episodeCount}
             />
           );
         })}
