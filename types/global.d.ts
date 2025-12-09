@@ -137,6 +137,7 @@ type TVShowDetailType = {
       },
     ];
   };
+  seasons: Seasion[],
 };
 
 type MediaDetailType = MovieDetailType | TVShowDetailType;
@@ -164,4 +165,15 @@ type RecommendationsResponse = {
   results: MediaDetailType[];
   total_pages: number;
   total_results: number;
+};
+
+type Season = {
+  id: string;
+  name: string;
+  overview: string;
+  poster_path: string;
+  air_date: string;
+  episode_cout: number;
+  season_number: number;
+  vote_average: number;
 };

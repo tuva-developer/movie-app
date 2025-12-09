@@ -35,9 +35,9 @@ const Banner = ({
   );
 
   return (
-    <div className="relative overflow-hidden text-white shadow-sm shadow-slate-800">
+    <div className="relative overflow-hidden bg-black text-white shadow-sm shadow-slate-800">
       <Image
-        className="absolute inset-0 w-full brightness-[.2] aspect-video w-full"
+        className="absolute inset-0 w-full brightness-[.2] aspect-video"
         src={`https://image.tmdb.org/t/p/original${backdropPath}`}
         width={1905}
         height={680}
