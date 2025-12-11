@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ImageComponent from "@/components/ImageComponent";
 import { useFetch } from "@/hooks/useFetch";
 import { useModalContext } from "@/hooks/useModalContext";
+import { Link } from "react-router-dom";
 
 export type MovieProps = {
   data: {
@@ -15,7 +16,7 @@ export type MovieProps = {
 };
 
 const Movie = (props: MovieProps) => {
-  const { setIsShowing, setContent } = useModalContext();
+  const { openPopup } = useModalContext();
   const { data } = props;
 
   const { data: videoResponse } = useFetch<VideosResponseType>({
@@ -51,8 +52,7 @@ const Movie = (props: MovieProps) => {
             <button
               className="mr-2 cursor-pointer rounded bg-white px-4 py-2 text-[10px] text-black lg:text-lg"
               onClick={() => {
-                setIsShowing(true);
-                setContent(
+                openPopup(
                   <iframe
                     title="Trailer"
                     src={`https://www.youtube.com/embed/${trailerVideoKey}`}
@@ -64,9 +64,11 @@ const Movie = (props: MovieProps) => {
               <FontAwesomeIcon icon={faPlay} />
               Trailer
             </button>
-            <button className="rounded bg-slate-300/35 px-4 py-2 text-[10px] lg:text-lg">
-              View Detail
-            </button>
+            <Link to={`/movie/${data.id}`}>
+              <button className="cursor-pointer rounded bg-slate-300/35 px-4 py-2 text-[10px] lg:text-lg">
+                View Detail
+              </button>
+            </Link>
           </div>
         </div>
       </div>

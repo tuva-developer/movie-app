@@ -13,11 +13,15 @@ const ModalProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [isShowing]);
 
+  const openPopup = (content: ReactNode) => {
+    setIsShowing(true);
+    setContent(content);
+  };
+
   return (
     <ModalContext.Provider
       value={{
-        setIsShowing,
-        setContent,
+        openPopup,
       }}
     >
       {children}

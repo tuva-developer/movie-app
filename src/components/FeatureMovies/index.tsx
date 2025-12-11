@@ -4,7 +4,7 @@ import PaginaIndicator from "@/components/FeatureMovies/PaginaIndicator";
 import { useFetch } from "@/hooks/useFetch";
 
 const FeatureMovies = () => {
-  const [activeMovieId, setActiveMovieId] = useState<number | null>(null);
+  const [activeMovieId, setActiveMovieId] = useState<number | undefined>();
 
   const { data: moviesResponse } = useFetch<MoviesResponseType>({
     url: "/movie/popular",
@@ -14,7 +14,7 @@ const FeatureMovies = () => {
 
   useEffect(() => {
     if (movies.length === 0) return;
-    
+
     setActiveMovieId(movies[0].id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(movies)]);
@@ -25,7 +25,7 @@ const FeatureMovies = () => {
         {movies
           .filter((movie) => movie.id === activeMovieId)
           .map((movie) => (
-            <Movie key={movie.id} data={movie}/>
+            <Movie key={movie.id} data={movie} />
           ))}
       </div>
 

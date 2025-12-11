@@ -5,10 +5,10 @@ import ImageComponent from "@/components/ImageComponent"
 
 const Header = () => {
   return (
-    <header className="flex h-14 items-center justify-between bg-slate-950 px-8 text-white lg:h-20">
+    <header className="flex h-16 items-center justify-between bg-slate-950 px-12 text-white lg:h-24">
       <div className="flex items-center gap-4 lg:gap-6">
         <Link to="/">
-          <ImageComponent src="/imgs/netflix.png" className="w-16 sm:w-28"/>
+          <ImageComponent src="/imgs/logo.png" className="w-12 sm:w-16"/>
         </Link>
 
         <a href="#" className="lg:text-xl">
