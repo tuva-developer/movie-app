@@ -1,4 +1,4 @@
-type MovieType = {
+type Movie = {
   id: number;
   backdrop_path: string;
   title: string;
@@ -6,27 +6,27 @@ type MovieType = {
   overview: string;
 };
 
-type MoviesResponseType = {
+type MoviesResponse = {
   page: number;
-  results: MovieType[];
+  results: Movie[];
   total_pages: number;
   total_results: number;
 };
 
-type VideosResponseType = { results: [{ type: string; key: string }] };
+type VideosResponse = { results: [{ type: string; key: string }] };
 
 type GenresType = {
   id: string;
   name: string;
 };
 
-type CrewType = {
+type Crew = {
   id: string;
   job: string;
   name: string;
 };
 
-type MovieDetailType = {
+type MovieDetail = {
   media_type: "movie";
   id: string;
   title: string;
@@ -69,7 +69,7 @@ type MovieDetailType = {
   videos: { results: [{ type: string; key: string }] };
 };
 
-type TVShowDetailType = {
+type TVShowDetail = {
   media_type: "tv";
   id: string;
   name: string;
@@ -146,7 +146,7 @@ type TVShowDetailType = {
   videos: { results: [{ type: string; key: string }] };
 };
 
-type MediaDetailType = MovieDetailType | TVShowDetailType;
+type MediaDetail = MovieDetail | TVShowDetail;
 
 type MediaType = {
   id: string;
@@ -168,7 +168,7 @@ type MediaListResponse = {
 
 type RecommendationsResponse = {
   page: number;
-  results: MediaDetailType[];
+  results: MediaDetail[];
   total_pages: number;
   total_results: number;
 };
@@ -183,3 +183,16 @@ type Season = {
   season_number: number;
   vote_average: number;
 };
+
+type People = {
+  name: string;
+  known_for_department: string;
+  gender: number;
+  place_of_birth: string;
+  birthday: string;
+  biography: string;
+  profile_path: string;
+  combined_credits?: {
+    cast: MediaDetail[]
+  },
+}

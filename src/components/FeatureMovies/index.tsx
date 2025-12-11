@@ -6,7 +6,7 @@ import { useFetch } from "@/hooks/useFetch";
 const FeatureMovies = () => {
   const [activeMovieId, setActiveMovieId] = useState<number | undefined>();
 
-  const { data: moviesResponse } = useFetch<MoviesResponseType>({
+  const { data: moviesResponse } = useFetch<MoviesResponse>({
     url: "/movie/popular",
   });
 

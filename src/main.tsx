@@ -7,6 +7,8 @@ import MovieDetail from "@/pages/MovieDetail.tsx";
 import RootLayout from "@/pages/RootLayout.tsx";
 import TVShowDetail from "@/pages/TVShowDetail";
 import ModalProvider from "@/contexts/ModalProvider";
+import PeoplePage from "@/pages/PeoplePage";
+import { API_KEY } from "@/libs/constants";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,23 @@ const router = createBrowserRouter([
       {
         path: "/tv/:id",
         element: <TVShowDetail />,
+      },
+      {
+        path: "/people/:id",
+        element: <PeoplePage />,
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `https://api.themoviedb.org/3/person/${params.id}?append_to_response=combined_credits`,
+            {
+              headers: {
+                accept: "application/json",
+                Authorization: `Bearer ${API_KEY}`,
+              },
+            },
+          );
+
+          return res;
+        },
       },
     ],
   },

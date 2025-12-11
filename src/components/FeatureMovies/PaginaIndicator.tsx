@@ -1,5 +1,5 @@
 type PaginaIndicatorProps = {
-  movies: MovieType[];
+  movies: Movie[];
   activeMovieId: number;
   setActiveMovieId: (id: number) => void;
 };

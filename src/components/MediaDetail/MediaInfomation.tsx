@@ -2,7 +2,7 @@ import { currencyFormatter } from "@/libs/utils";
 import ImageComponent from "@/components/ImageComponent";
 
 type MediaInfomationProps = {
-  mediaInfo: MediaDetailType | undefined;
+  mediaInfo: MediaDetail | undefined;
 };
 
 const MediaInfomation = ({ mediaInfo }: MediaInfomationProps) => {

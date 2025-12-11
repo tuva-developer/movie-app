@@ -2,17 +2,19 @@ import Loading from "@/components/Loading";
 import MovieCard from "@/components/MediaList/MovieCard";
 
 type RelatedMediaListProps = {
-  mediaList?: MediaDetailType[];
+  title?: string;
+  mediaList?: MediaDetail[];
   isLoading: boolean;
 };
 
 const RelatedMediaList = ({
+  title,
   mediaList = [],
   isLoading,
 }: RelatedMediaListProps) => {
   return (
     <div className="mt-6">
-      <p className="mb-4 text-[1.4vw] font-bold">More like this</p>
+      <p className="mb-4 text-[1.4vw] font-bold">{title}</p>
       {isLoading ? (
         <Loading />
       ) : (
@@ -21,14 +23,12 @@ const RelatedMediaList = ({
             <MovieCard
               key={media.id}
               id={media.id}
-              title={
+              title={media?.media_type === "tv" ? media?.name : media?.title}
+              releaseDate={
                 media?.media_type === "tv"
-                  ? media?.name
-                  : media?.title
-              }
-              releaseDate={media?.media_type === "tv"
                   ? media?.first_air_date
-                  : media?.release_date}
+                  : media?.release_date
+              }
               posterPath={media.poster_path}
               point={media.vote_average}
               mediaType={"movie"}

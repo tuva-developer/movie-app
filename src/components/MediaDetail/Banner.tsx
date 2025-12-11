@@ -10,7 +10,7 @@ type BannerProps = {
   backdropPath?: string;
   posterPath?: string;
   certification?: string;
-  crews?: CrewType[];
+  crews?: Crew[];
   genres?: GenresType[];
   releaseDate?: string;
   point?: number;

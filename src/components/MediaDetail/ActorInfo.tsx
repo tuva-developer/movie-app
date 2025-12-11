@@ -1,6 +1,8 @@
 import ImageComponent from "@/components/ImageComponent";
+import { Link } from "react-router-dom";
 
 type ActorDetailProps = {
+  id: string;
   name: string;
   character: string;
   profile_path: string;
@@ -8,13 +10,17 @@ type ActorDetailProps = {
 };
 
 const ActorDetail = ({
+  id,
   name,
   character,
   profile_path,
   espisodeCount,
 }: ActorDetailProps) => {
   return (
-    <div className="rounded-lg border border-slate-300 shadow-sm">
+    <Link
+      to={`/people/${id}`}
+      className="rounded-lg border border-slate-300 shadow-sm duration-200 hover:scale-102"
+    >
       <ImageComponent
         className="rounded-lg"
         width={276}
@@ -30,7 +36,7 @@ const ActorDetail = ({
         <p>{character}</p>
         {espisodeCount && <p>{espisodeCount} Espisodes</p>}
       </div>
-    </div>
+    </Link>
   );
 };
 export default ActorDetail;

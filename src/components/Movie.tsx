@@ -19,7 +19,7 @@ const Movie = (props: MovieProps) => {
   const { openPopup } = useModalContext();
   const { data } = props;
 
-  const { data: videoResponse } = useFetch<VideosResponseType>({
+  const { data: videoResponse } = useFetch<VideosResponse>({
     url: `/movie/${data.id}/videos`,
   });
 

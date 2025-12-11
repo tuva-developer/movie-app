@@ -28,6 +28,7 @@ const ActorList = ({ actors }: ActorListProps) => {
           return (
             <ActorInfo
               key={actor.id}
+              id={actor.id}
               name={actor.name}
               character={actor.character}
               profile_path={actor.profile_path}

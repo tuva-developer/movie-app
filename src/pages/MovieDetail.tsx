@@ -10,11 +10,11 @@ const MovieDetail = () => {
   const { id } = useParams();
 
   const { data: movieResponse, isLoading: isLoading } =
-    useFetch<MovieDetailType>({
+    useFetch<MovieDetail>({
       url: `/movie/${id}?append_to_response=release_dates,credits,videos`,
     });
 
-  const movieInfo: MovieDetailType | undefined = movieResponse
+  const movieInfo: MovieDetail | undefined = movieResponse
     ? { ...movieResponse, media_type: "movie" }
     : undefined;
 
@@ -63,10 +63,11 @@ const MovieDetail = () => {
         trailerVideoKey={trailerVideoKey}
       />
       <div className="bg-black text-[1.2vw] text-white">
-        <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
+        <div className="container">
           <div className="flex-3">
             <ActorList actors={casts} />
             <RelatedMediaList
+              title="More like this"
               mediaList={relatedMovies}
               isLoading={isRelatedLoading}
             />
