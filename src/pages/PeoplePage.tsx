@@ -1,13 +1,7 @@
 import ImageComponent from "@/components/ImageComponent";
 import RelatedMediaList from "@/components/MediaDetail/RelatedMediaList";
+import { GENDER_MAPPING } from "@/libs/constants";
 import { useLoaderData } from "react-router-dom";
-
-const GENDER_MAPPING: Record<number, string> = {
-  0: "Not set / not specified",
-  1: "Male",
-  2: "Female",
-  3: "Non-binary",
-};
 
 const PeoplePage = () => {
   const peopleInfo = useLoaderData() as People;
@@ -15,11 +9,14 @@ const PeoplePage = () => {
   const knowForList = peopleInfo.combined_credits?.cast || [];
 
   return (
-    <div className="bg-black text-white text-[1.2vw]">
+    <div className="bg-black text-[1.2vw] text-white">
       <div className="container">
         <div className="flex-1">
           <ImageComponent
-            src={`https://media.themoviedb.org/t/p/w600_and_h900_bestv2${peopleInfo.profile_path}`}
+            src={
+              peopleInfo.profile_path &&
+              `https://media.themoviedb.org/t/p/w600_and_h900_bestv2${peopleInfo.profile_path}`
+            }
             width={600}
             height={900}
             className="mb-6"

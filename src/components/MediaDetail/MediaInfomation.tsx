@@ -22,7 +22,10 @@ const MediaInfomation = ({ mediaInfo }: MediaInfomationProps) => {
         {(mediaInfo?.origin_country || []).map((countryCode) => (
           <ImageComponent
             key={countryCode}
-            src={`https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`}
+            src={
+              countryCode &&
+              `https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`
+            }
             width={48}
             height={36}
           />

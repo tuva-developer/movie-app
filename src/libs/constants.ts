@@ -11,3 +11,10 @@ export const TopRatedTabs = [
   { id: "movie", label: "Movie", url: "/movie/top_rated" },
   { id: "tv", label: "TV Show", url: "/tv/top_rated" },
 ];
+
+export const GENDER_MAPPING: Record<number, string> = {
+  0: "Not set / not specified",
+  1: "Male",
+  2: "Female",
+  3: "Non-binary",
+};

@@ -23,7 +23,10 @@ const SeasonList = ({ seasons = [] }: SeasonListProps) => {
           >
             <ImageComponent
               className="w-1/4 rounded-lg"
-              src={`https://image.tmdb.org/t/p/w300${seasons.poster_path}`}
+              src={
+                seasons.poster_path &&
+                `https://image.tmdb.org/t/p/w300${seasons.poster_path}`
+              }
               width={130}
               height={195}
             />
