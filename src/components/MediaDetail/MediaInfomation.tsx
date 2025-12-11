@@ -1,5 +1,5 @@
 import { currencyFormatter } from "@/libs/utils";
-import Image from "@/components/Image";
+import ImageComponent from "@/components/ImageComponent";
 
 type MediaInfomationProps = {
   mediaInfo: MediaDetailType | undefined;
@@ -20,10 +20,12 @@ const MediaInfomation = ({ mediaInfo }: MediaInfomationProps) => {
       <div className="mb-4">
         <p className="font-bold">Original Country</p>
         {(mediaInfo?.origin_country || []).map((countryCode) => (
-          <Image
+          <ImageComponent
             key={countryCode}
             src={`https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`}
-          ></Image>
+            width={48}
+            height={36}
+          />
         ))}
       </div>
       <div className="mb-4">

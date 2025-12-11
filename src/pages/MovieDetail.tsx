@@ -11,7 +11,7 @@ const MovieDetail = () => {
 
   const { data: movieResponse, isLoading: isLoading } =
     useFetch<MovieDetailType>({
-      url: `/movie/${id}?append_to_response=release_dates,credits`,
+      url: `/movie/${id}?append_to_response=release_dates,credits,videos`,
     });
 
   const movieInfo: MovieDetailType | undefined = movieResponse
@@ -42,6 +42,10 @@ const MovieDetail = () => {
     character: cast.character,
   }));
 
+  const trailerVideoKey = (movieInfo?.videos?.results || []).find(
+    (video) => video.type === "Trailer",
+  )?.key;
+
   if (isLoading) return <Loading />;
 
   return (
@@ -56,6 +60,7 @@ const MovieDetail = () => {
         point={movieInfo?.vote_average}
         overView={movieInfo?.overview}
         crews={crews}
+        trailerVideoKey={trailerVideoKey}
       />
       <div className="bg-black text-[1.2vw] text-white">
         <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">

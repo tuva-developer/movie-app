@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircularProcessBar from "@/components/CircularProcessBar";
 import { groupBy } from "lodash";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import Image from "@/components/Image";
+import ImageComponent from "@/components/ImageComponent";
+import { useModalContext } from "@/hooks/useModalContext";
 
 type BannerProps = {
   title?: string;
@@ -14,6 +15,7 @@ type BannerProps = {
   releaseDate?: string;
   point?: number;
   overView?: string;
+  trailerVideoKey?: string;
 };
 
 const Banner = ({
@@ -26,7 +28,11 @@ const Banner = ({
   releaseDate = "",
   point = 0,
   overView = "",
+  trailerVideoKey = "",
 }: BannerProps) => {
+  const { setIsShowing, setContent } = useModalContext();
+  if (!title) return null;
+
   const groupedCrews = groupBy(
     crews.filter((crew) =>
       ["Director", "Screenplay", "Writer"].includes(crew.job),
@@ -36,19 +42,19 @@ const Banner = ({
 
   return (
     <div className="relative overflow-hidden bg-black text-white shadow-sm shadow-slate-800">
-      <Image
-        className="absolute inset-0 w-full brightness-[.2] aspect-video"
+      <ImageComponent
+        className="absolute inset-0 aspect-video w-full brightness-[.2]"
         src={`https://image.tmdb.org/t/p/original${backdropPath}`}
-        width={1905}
-        height={680}
-      ></Image>
+        width={1200}
+        height={800}
+      />
       <div className="relative mx-auto flex max-w-screen-xl gap-6 px-6 py-10 lg:gap-8">
         <div className="flex-1">
-          <Image
+          <ImageComponent
             width={600}
             height={900}
             src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${posterPath}`}
-          ></Image>
+          />
         </div>
         <div className="flex-2">
           <p className="mb-2 text-[2vw] font-bold">{title}</p>
@@ -68,7 +74,19 @@ const Banner = ({
               />
               Rating
             </div>
-            <button>
+            <button
+              className="cursor-pointer"
+              onClick={() => {
+                setIsShowing(true);
+                setContent(
+                  <iframe
+                    title="Trailer"
+                    src={`https://www.youtube.com/embed/${trailerVideoKey}`}  
+                    className="aspect-video w-[50vw]"
+                  />,
+                );
+              }}
+            >
               <FontAwesomeIcon icon={faPlay} className="mr-1" />
               Trailer
             </button>

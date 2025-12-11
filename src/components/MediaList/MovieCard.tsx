@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import CircularProcessBar from "@/components/CircularProcessBar";
-import Image from "@/components/Image";
+import ImageComponent from "@/components/ImageComponent";
 
 type MovieCardProps = {
   id: string;
@@ -30,7 +30,7 @@ const MovieCard = ({
             TV Show
           </div>
         )}
-        <Image
+        <ImageComponent
           src={`https://image.tmdb.org/t/p/w500${posterPath}`}
           width={210}
           height={300}

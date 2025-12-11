@@ -12,7 +12,7 @@ const TVShowDetail = () => {
 
   const { data: tvShowResponse, isLoading: isLoading } =
     useFetch<TVShowDetailType>({
-      url: `/tv/${id}?append_to_response=content_ratings,aggregate_credits`,
+      url: `/tv/${id}?append_to_response=content_ratings,aggregate_credits,videos`,
     });
 
   const tvShowInfo: TVShowDetailType | undefined = tvShowResponse
@@ -48,6 +48,10 @@ const TVShowDetail = () => {
     episodeCount: cast.roles[0]?.episode_count,
   }));
 
+  const trailerVideoKey = (tvShowInfo?.videos?.results || []).find(
+    (video) => video.type === "Trailer",
+  )?.key;
+
   if (isLoading) return <Loading />;
 
   return (
@@ -61,6 +65,7 @@ const TVShowDetail = () => {
         point={tvShowInfo?.vote_average}
         overView={tvShowInfo?.overview}
         crews={crews}
+        trailerVideoKey={trailerVideoKey}
       />
       <div className="bg-black text-[1.2vw] text-white">
         <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">

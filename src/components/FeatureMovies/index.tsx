@@ -25,7 +25,7 @@ const FeatureMovies = () => {
         {movies
           .filter((movie) => movie.id === activeMovieId)
           .map((movie) => (
-            <Movie key={movie.id} data={movie} />
+            <Movie key={movie.id} data={movie}/>
           ))}
       </div>
 

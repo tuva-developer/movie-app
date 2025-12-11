@@ -13,6 +13,8 @@ type MoviesResponseType = {
   total_results: number;
 };
 
+type VideosResponseType = { results: [{ type: string; key: string }] };
+
 type GenresType = {
   id: string;
   name: string;
@@ -64,6 +66,7 @@ type MovieDetailType = {
       },
     ];
   };
+  videos: { results: [{ type: string; key: string }] };
 };
 
 type TVShowDetailType = {
@@ -81,11 +84,13 @@ type TVShowDetailType = {
   status: string;
   budget: number;
   revenue: number;
-  networks: [{
-    id: string;
-    name: string;
-    logo_path: string;
-  }],
+  networks: [
+    {
+      id: string;
+      name: string;
+      logo_path: string;
+    },
+  ];
   content_ratings: {
     results: [
       {
@@ -137,7 +142,8 @@ type TVShowDetailType = {
       },
     ];
   };
-  seasons: Seasion[],
+  seasons: Seasion[];
+  videos: { results: [{ type: string; key: string }] };
 };
 
 type MediaDetailType = MovieDetailType | TVShowDetailType;

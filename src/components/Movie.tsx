@@ -1,24 +1,36 @@
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "@/components/Image"
+import ImageComponent from "@/components/ImageComponent";
+import { useFetch } from "@/hooks/useFetch";
+import { useModalContext } from "@/hooks/useModalContext";
 
 export type MovieProps = {
   data: {
+    id: number;
     backdrop_path: string;
     title: string;
     release_date: string;
     overview: string;
   };
-}
+};
 
 const Movie = (props: MovieProps) => {
+  const { setIsShowing, setContent } = useModalContext();
   const { data } = props;
+
+  const { data: videoResponse } = useFetch<VideosResponseType>({
+    url: `/movie/${data.id}/videos`,
+  });
+
+  const trailerVideoKey = (videoResponse?.results || []).find(
+    (video) => video.type === "Trailer",
+  )?.key;
 
   return (
     <div>
-      <Image
+      <ImageComponent
         src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
-        className="aspect-video brightness-50 w-full"
+        className="aspect-video w-full brightness-50"
         width={1430}
         height={800}
       />
@@ -36,7 +48,19 @@ const Movie = (props: MovieProps) => {
             <p>{data.overview || "No overview available."}</p>
           </div>
           <div className="mt-4">
-            <button className="mr-2 cursor-pointer rounded bg-white px-4 py-2 text-[10px] text-black lg:text-lg">
+            <button
+              className="mr-2 cursor-pointer rounded bg-white px-4 py-2 text-[10px] text-black lg:text-lg"
+              onClick={() => {
+                setIsShowing(true);
+                setContent(
+                  <iframe
+                    title="Trailer"
+                    src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                    className="aspect-video w-[50vw]"
+                  />,
+                );
+              }}
+            >
               <FontAwesomeIcon icon={faPlay} />
               Trailer
             </button>

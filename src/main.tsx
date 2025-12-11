@@ -6,6 +6,7 @@ import HomePage from "@/pages/HomePage.tsx";
 import MovieDetail from "@/pages/MovieDetail.tsx";
 import RootLayout from "@/pages/RootLayout.tsx";
 import TVShowDetail from "@/pages/TVShowDetail";
+import ModalProvider from "@/contexts/ModalProvider";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <ModalProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </ModalProvider>
   </StrictMode>,
 );

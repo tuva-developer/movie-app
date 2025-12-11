@@ -16,7 +16,9 @@ type ActorListProps = {
 const ActorList = ({ actors }: ActorListProps) => {
   const [isShowMore, setIsShowMore] = useState(false);
 
-  const currentActors = !isShowMore ? actors?.slice(0, 4) || [] : actors?.slice(0, 32) || [];
+  const currentActors = !isShowMore
+    ? actors?.slice(0, 4) || []
+    : actors?.slice(0, 32) || [];
 
   return (
     <div>
@@ -34,12 +36,14 @@ const ActorList = ({ actors }: ActorListProps) => {
           );
         })}
       </div>
-      <p
-        className="mt-1 cursor-pointer"
-        onClick={() => setIsShowMore(!isShowMore)}
-      >
-        {isShowMore ? "Show Less" : "Show More"}
-      </p>
+      {actors.length > 4 && (
+        <p
+          className="mt-1 cursor-pointer"
+          onClick={() => setIsShowMore(!isShowMore)}
+        >
+          {isShowMore ? "Show Less" : "Show More"}
+        </p>
+      )}
     </div>
   );
 };

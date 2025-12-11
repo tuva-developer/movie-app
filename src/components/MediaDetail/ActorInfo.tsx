@@ -1,4 +1,4 @@
-import Image from "@/components/Image";
+import ImageComponent from "@/components/ImageComponent";
 
 type ActorDetailProps = {
   name: string;
@@ -15,7 +15,7 @@ const ActorDetail = ({
 }: ActorDetailProps) => {
   return (
     <div className="rounded-lg border border-slate-300 shadow-sm">
-      <Image
+      <ImageComponent
         className="rounded-lg"
         width={276}
         height={350}
