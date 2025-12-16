@@ -9,10 +9,9 @@ import MediaInfomation from "@/components/MediaDetail/MediaInfomation";
 const MovieDetail = () => {
   const { id } = useParams();
 
-  const { data: movieResponse, isLoading: isLoading } =
-    useFetch<MovieDetail>({
-      url: `/movie/${id}?append_to_response=release_dates,credits,videos`,
-    });
+  const { data: movieResponse, isLoading: isLoading } = useFetch<MovieDetail>({
+    url: `/movie/${id}?append_to_response=release_dates,credits,videos`,
+  });
 
   const movieInfo: MovieDetail | undefined = movieResponse
     ? { ...movieResponse, media_type: "movie" }
@@ -70,6 +69,7 @@ const MovieDetail = () => {
               title="More like this"
               mediaList={relatedMovies}
               isLoading={isRelatedLoading}
+              className="mt-6"
             />
           </div>
           <div className="flex-1">

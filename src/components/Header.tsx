@@ -11,15 +11,20 @@ const Header = () => {
           <ImageComponent src="/imgs/logo.png" className="w-12 sm:w-16" />
         </Link>
 
-        <a href="#" className="lg:text-xl">
+        <a href="/search?mediaType=movie" className="lg:text-xl">
           Movie
         </a>
-        <a href="#" className="lg:text-xl">
+        <a href="/search?mediaType=tv" className="lg:text-xl">
           TV Show
         </a>
       </div>
       <div>
-        <FontAwesomeIcon icon={faMagnifyingGlass} className="cursor-pointer" />
+        <Link to={"/search"}>
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className="cursor-pointer"
+          />
+        </Link>
       </div>
     </header>
   );

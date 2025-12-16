@@ -193,6 +193,19 @@ type People = {
   biography: string;
   profile_path: string;
   combined_credits?: {
-    cast: MediaDetail[]
-  },
-}
+    cast: MediaDetail[];
+  };
+};
+
+type Genre = {
+  id: number;
+  name: string;
+};
+
+type GenresValue = number[];
+
+type SearchFormValues = {
+  mediaType: "movie" | "tv";
+  genres: number[];
+  rating: "all" | "0-49" | "50-69" | "70-100";
+};

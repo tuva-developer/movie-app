@@ -5,16 +5,18 @@ type RelatedMediaListProps = {
   title?: string;
   mediaList?: MediaDetail[];
   isLoading: boolean;
+  className?: string;
 };
 
 const RelatedMediaList = ({
   title,
   mediaList = [],
   isLoading,
+  className,
 }: RelatedMediaListProps) => {
   return (
-    <div className="mt-6">
-      <p className="mb-4 text-[1.4vw] font-bold">{title}</p>
+    <div className={className}>
+      {title && <p className="mb-4 text-[1.4vw] font-bold">{title}</p>}
       {isLoading ? (
         <Loading />
       ) : (
