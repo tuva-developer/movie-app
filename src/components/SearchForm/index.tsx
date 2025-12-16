@@ -3,7 +3,7 @@ import FormField from "@/components/SearchForm/FormField";
 import MediaTypeInput from "@/components/SearchForm/FormInputs/MediaTypeInput";
 import GenresInput from "@/components/SearchForm/FormInputs/GenresInput";
 import RatingInput from "@/components/SearchForm/FormInputs/RatingInput";
-import { useEffect, useMemo, type Dispatch, type SetStateAction } from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const ALLOWED_MEDIA_TYPES = ["movie", "tv"] as const;
