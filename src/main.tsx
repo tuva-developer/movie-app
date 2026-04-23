@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@/index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Navigate, createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "@/pages/RootLayout.tsx";
 import ModalProvider from "@/contexts/ModalProvider";
 import { API_KEY } from "@/libs/constants";
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/home",
+        element: <Navigate to="/" replace />,
       },
       {
         path: "/movie/:id",
